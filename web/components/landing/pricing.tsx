@@ -1,4 +1,6 @@
-import { Check, X } from "lucide-react";
+"use client";
+
+import { Check, X, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -8,136 +10,128 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
 
 export default function PricingSection() {
+    const [showHint, setShowHint] = useState(false);
+
     return (
         <section className="py-24 bg-slate-50 relative overflow-hidden" id="pricing">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-100/30 rounded-full blur-3xl opacity-50 pointer-events-none" />
+            {/* Background elements */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-100/20 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
-            <div className="container px-4 md:px-6 mx-auto max-w-5xl relative z-10">
-                <div className="text-center mb-16 space-y-4">
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-slate-900">
-                        Escolha o Futuro do Seu Filho Agora
+            <div className="container px-4 md:px-6 mx-auto max-w-6xl relative z-10">
+
+                <div className="text-center mb-16 space-y-6">
+                    <div className="inline-block bg-white border border-red-200 text-red-600 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
+                        ⏳ Oferta por tempo limitado
+                    </div>
+                    <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl text-slate-900 leading-tight">
+                        Escolha o plano ideal para <br /> <span className="text-primary italic">o futuro do seu bebê</span>
                     </h2>
-                    <p className="mx-auto max-w-[700px] text-slate-500 md:text-xl/relaxed font-medium">
-                        Não deixe para depois. A <span className="text-red-500 font-bold">janela neurológica</span> não espera.
-                    </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
-                    {/* Option 1: Basic - Ghosted/De-emphasized */}
-                    <Card className="border-slate-200 shadow-sm hover:shadow-md transition-shadow bg-slate-50/50 rounded-3xl opacity-80 hover:opacity-100 scale-95 origin-right lg:mr-[-20px] z-0">
-                        <CardHeader>
-                            <CardTitle className="text-xl font-bold text-slate-500">
-                                O Curioso (Básico)
-                            </CardTitle>
-                            <CardDescription>Para quem quer apenas testar.</CardDescription>
+                <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
+
+                    {/* Plano Essencial */}
+                    <Card className="border border-slate-200 shadow-sm rounded-[2rem] bg-white flex flex-col hover:border-slate-300 transition-all">
+                        <CardHeader className="p-8 space-y-2">
+                            <CardTitle className="text-2xl font-bold text-slate-900">Plano Essencial</CardTitle>
+                            <CardDescription className="font-medium text-slate-500 uppercase text-xs tracking-wider">Apenas o Checklist Principal</CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="flex items-center gap-2">
-                                <span className="text-sm text-slate-400 line-through">
-                                    R$ 97,00
-                                </span>
-                                <span className="text-3xl font-bold text-slate-700">
-                                    R$ 10,00
-                                </span>
+                        <CardContent className="p-8 pt-0 space-y-8 flex-grow">
+                            <div className="space-y-1">
+                                <p className="text-xs font-bold text-slate-400 line-through uppercase tracking-wider">De R$ 47,00 por</p>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-sm font-bold text-slate-900">R$</span>
+                                    <span className="text-5xl font-extrabold text-slate-900">10</span>
+                                    <span className="text-sm font-bold text-slate-900">,00</span>
+                                </div>
                             </div>
-                            <ul className="space-y-3 text-slate-500 text-sm">
-                                <li className="flex items-center gap-2">
-                                    <Check className="h-4 w-4 text-slate-400" /> Checklist 0 a 12 Meses
+
+                            <ul className="space-y-4">
+                                <li className="flex items-center gap-3 text-slate-400 font-medium text-sm">
+                                    <X className="w-4 h-4 text-slate-300" /> Checklist 1 a 2 Anos
                                 </li>
-                                <li className="flex items-center gap-2 text-slate-400/70">
-                                    <X className="h-4 w-4" /> Sem Continuidade
+                                <li className="flex items-center gap-3 text-slate-400 font-medium text-sm">
+                                    <X className="w-4 h-4 text-slate-300" /> Checklist 2 a 3 Anos
                                 </li>
-                                <li className="flex items-center gap-2 text-slate-400/70">
-                                    <X className="h-4 w-4" /> Sem Brinquedos (Guia)
+                                <li className="flex items-center gap-3 text-slate-400 font-medium text-sm">
+                                    <X className="w-4 h-4 text-slate-300" /> Lista de Enxoval Inteligente
                                 </li>
-                                <li className="flex items-center gap-2 text-slate-400/70">
-                                    <X className="h-4 w-4" /> Acesso Padrão
+                                <li className="flex items-center gap-3 text-slate-700 font-bold text-sm">
+                                    <Check className="w-4 h-4 text-emerald-500" strokeWidth={3} /> Protocolo Completo (0-12m)
                                 </li>
                             </ul>
                         </CardContent>
-                        <CardFooter>
-                            <Button variant="outline" className="w-full rounded-xl border-slate-300 text-slate-500 hover:text-slate-700 hover:bg-slate-100" asChild>
-                                <a href="#checkout-basic">QUERO APENAS O BÁSICO</a>
-                            </Button>
+                        <CardFooter className="p-8 pt-0 flex flex-col gap-4">
+                            <div onMouseEnter={() => setShowHint(true)} className="w-full">
+                                <Button variant="outline" className="w-full h-14 rounded-xl border-slate-200 font-bold hover:bg-slate-50 hover:text-slate-900 transition-all" asChild>
+                                    <a href="#checkout-basic">Quero o essencial</a>
+                                </Button>
+                            </div>
+                            {showHint && (
+                                <p className="text-primary font-bold text-[10px] uppercase tracking-widest text-center animate-in fade-in slide-in-from-top-1 duration-300">
+                                    💡 94% dos pais escolhem o Plano Mestre.
+                                </p>
+                            )}
                         </CardFooter>
                     </Card>
 
-                    {/* Option 2: Complete (Recommended) - Hero Card */}
-                    <Card className="border-2 border-primary shadow-2xl relative bg-white transform md:scale-110 z-10 rounded-[2rem] overflow-visible ring-4 ring-primary/5">
-                        <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-full text-center">
-                            <Badge className="px-6 py-1.5 text-sm font-bold uppercase tracking-wider bg-primary text-primary-foreground hover:bg-primary shadow-lg rounded-full border-4 border-slate-50">
-                                ⭐ Recomendado pelos Pais
-                            </Badge>
+                    {/* Plano Mestre */}
+                    <Card className="border-2 border-primary shadow-2xl shadow-blue-500/10 rounded-[2rem] bg-white flex flex-col transform md:scale-105 relative z-10 overflow-hidden">
+                        <div className="absolute top-0 right-0 bg-primary text-white px-6 py-2 rounded-bl-2xl font-bold uppercase text-[10px] tracking-widest">
+                            Recomendado
                         </div>
-                        <CardHeader className="pt-10 pb-2 text-center">
-                            <CardTitle className="text-2xl font-bold text-slate-900">
-                                O Pai/Mãe Inteligente
-                            </CardTitle>
-                            <CardDescription className="text-emerald-600 font-bold bg-emerald-50 inline-block px-3 py-1 rounded-full text-xs mt-2">
-                                Economia de R$ 500+ em brinquedos
-                            </CardDescription>
+                        <CardHeader className="p-10 space-y-2">
+                            <CardTitle className="text-3xl font-black text-slate-900 leading-none">Plano Mestre</CardTitle>
+                            <CardDescription className="font-bold text-primary uppercase text-xs tracking-widest">O Caminho do Desenvolvimento Total</CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-6">
-                            <div className="flex items-center justify-center gap-3 bg-slate-50 py-4 rounded-2xl border border-slate-100 mb-2">
-                                <span className="text-sm text-slate-400 line-through font-medium">
-                                    R$ 197,00
-                                </span>
-                                <div className="flex flex-col items-start leading-none">
-                                    <span className="text-5xl font-extrabold text-primary">
-                                        R$ 27<small className="text-2xl">,00</small>
-                                    </span>
+                        <CardContent className="p-10 pt-0 space-y-8 flex-grow">
+                            <div className="space-y-1">
+                                <p className="text-xs font-bold text-slate-400 line-through uppercase tracking-wider">De R$ 197,00 por</p>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-sm font-bold text-primary">R$</span>
+                                    <span className="text-6xl font-extrabold text-primary">27</span>
+                                    <span className="text-sm font-bold text-primary">,00</span>
                                 </div>
+                                <p className="text-emerald-600 font-bold text-[10px] uppercase tracking-widest mt-2">✨ Economia de mais de R$ 170,00</p>
                             </div>
 
-                            <p className="text-center text-xs text-slate-500 font-medium">
-                                Oferta limitada: 7x mais conteúdo por + R$ 17
-                            </p>
-
-                            <div className="space-y-3 text-slate-700 text-sm font-medium px-2">
-                                <div className="flex items-center gap-3">
-                                    <div className="bg-primary/10 p-1 rounded-full"><Check className="h-4 w-4 text-primary shrink-0" /></div>
-                                    <span>Checklist 0 a 12 Meses</span>
-                                </div>
-                                <div className="flex items-center gap-3 bg-blue-50/50 p-2 rounded-xl -mx-2 border border-blue-100/50">
-                                    <div className="bg-blue-100 p-1 rounded-full"><Check className="h-4 w-4 text-primary shrink-0" /></div>
-                                    <span>
-                                        <strong>BÔNUS:</strong> Checklist 1 a 2 Anos (Fala)
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-3 bg-blue-50/50 p-2 rounded-xl -mx-2 border border-blue-100/50">
-                                    <div className="bg-blue-100 p-1 rounded-full"><Check className="h-4 w-4 text-primary shrink-0" /></div>
-                                    <span>
-                                        <strong>BÔNUS:</strong> Checklist 2 a 3 Anos (Lógica)
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-3 bg-emerald-50 p-2 rounded-xl -mx-2 border border-emerald-100">
-                                    <div className="bg-emerald-100 p-1 rounded-full"><Check className="h-4 w-4 text-emerald-600 shrink-0" /></div>
-                                    <span>
-                                        <strong>Guia do Enxoval Inteligente</strong> (Brinquedos)
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="bg-primary/10 p-1 rounded-full"><Check className="h-4 w-4 text-primary shrink-0" /></div>
-                                    <span>Acesso Vitalício + Atualizações</span>
-                                </div>
+                            <div className="space-y-4">
+                                {[
+                                    { text: "Checklist Completo 0 a 12 meses", strong: true },
+                                    { text: "BÔNUS: Checklist 1 a 2 Anos (Fala)", strong: false },
+                                    { text: "BÔNUS: Checklist 2 a 3 Anos (Lógica)", strong: false },
+                                    { text: "BÔNUS: Lista Enxoval Inteligente", strong: false },
+                                    { text: "Acesso Vitalício + Atualizações", strong: false }
+                                ].map((item, i) => (
+                                    <div key={i} className="flex items-center gap-3">
+                                        <div className="bg-emerald-50 p-1 rounded-full">
+                                            <Check className="w-3.5 h-3.5 text-emerald-600" strokeWidth={3} />
+                                        </div>
+                                        <span className={`text-sm ${item.strong ? 'font-bold text-slate-900' : 'font-medium text-slate-600'}`}>{item.text}</span>
+                                    </div>
+                                ))}
                             </div>
                         </CardContent>
-                        <CardFooter className="pb-8 pt-2">
-                            <Button size="xl" variant="cta" className="w-full text-base shadow-red-200" asChild>
-                                <a href="#checkout-complete">QUERO O PACOTE COMPLETO</a>
+                        <CardFooter className="p-10 pt-0">
+                            <Button size="xl" variant="default" className="w-full h-16 text-lg font-bold shadow-xl shadow-blue-500/20 bg-primary hover:bg-blue-700 text-white rounded-2xl transition-all" asChild>
+                                <a href="#checkout-master">
+                                    Quero o Pacote Completo
+                                </a>
                             </Button>
                         </CardFooter>
                     </Card>
                 </div>
 
-                {/* Guarantee Seal below pricing */}
-                <div className="mt-16 text-center">
-                    <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full border shadow-sm text-sm text-slate-600 hover:shadow-md transition-shadow">
-                        <div className="bg-green-100 p-1 rounded-full"><Check className="w-4 h-4 text-green-600" /></div>
-                        <span className="font-semibold">Garantia de 7 dias incondicional</span> — Risco Zero
+                <div className="mt-20 text-center flex flex-col items-center gap-6">
+                    <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px]">🔒 Transação 100% Segura e Criptografada</p>
+                    <div className="flex justify-center items-center gap-8 opacity-30 grayscale saturate-0">
+                        {/* Fake Payment Logos */}
+                        <div className="w-16 h-8 bg-slate-400 rounded"></div>
+                        <div className="w-16 h-8 bg-slate-400 rounded"></div>
+                        <div className="w-16 h-8 bg-slate-400 rounded"></div>
                     </div>
                 </div>
             </div>

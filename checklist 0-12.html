@@ -1,0 +1,2301 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo NeuroBaby - Ebook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        /* BASE & RESET */
+        :root {
+            --primary: #2C3E50;
+            /* Deep Blue */
+            --accent: #E67E22;
+            /* Warm Orange for highlights */
+            --bg-page: #ffffff;
+            --text-main: #34495E;
+            --text-light: #7F8C8D;
+            --border-color: #ECF0F1;
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Merriweather', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #f0f0f0;
+            /* Browser background */
+            font-family: var(--font-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* PAGE SETUP (A4) */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm 20mm;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            page-break-after: always;
+            overflow: visible;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                height: auto;
+                min-height: 297mm;
+                page-break-after: always;
+            }
+
+            /* Hide browser UI elements if any */
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* TYPOGRAPHY */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-display);
+            color: var(--primary);
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        h3 {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-top: 1.5em;
+        }
+
+        p {
+            margin-bottom: 1em;
+            font-size: 11pt;
+        }
+
+        strong {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* COVER PAGE DESIGN */
+        .page.cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            padding: 30mm;
+            text-align: left;
+            height: 297mm;
+        }
+
+        .cover-content {
+            z-index: 2;
+        }
+
+        .cover-visual {
+            width: 155mm;
+            /* Full width within margins */
+            height: 300px;
+            background: radial-gradient(circle at 30% 30%, var(--accent) 0%, transparent 40%),
+                radial-gradient(circle at 70% 70%, var(--primary) 0%, transparent 50%);
+            opacity: 0.1;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .cover-content {
+            z-index: 1;
+            position: relative;
+            width: 100%;
+        }
+
+        .cover-title {
+            font-size: 4.5rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .cover-subtitle {
+            font-size: 1.8rem;
+            font-family: var(--font-display);
+            font-weight: 300;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            border-left: 5px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        .cover-hook {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 60px;
+        }
+
+        .cover-author {
+            font-size: 1rem;
+            font-family: var(--font-display);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        /* CONTENT PAGES */
+        .month-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 10px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 5px;
+        }
+
+        .month-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .month-weeks {
+            font-size: 1rem;
+            font-family: var(--font-display);
+            color: var(--text-light);
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .month-meta {
+            background: #F8F9FA;
+            padding: 10px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .meta-item {
+            flex: 1;
+        }
+
+        .meta-label {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* CHECKLIST TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-family: var(--font-display);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        table {
+            break-inside: avoid;
+            margin-bottom: 10px;
+        }
+
+        tr {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .col-status {
+            width: 130px;
+            text-align: center;
+            vertical-align: middle !important;
+        }
+
+        .col-action {
+            width: 22%;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .col-how {
+            width: 34%;
+        }
+
+        .col-why {
+            width: 22%;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .week-row {
+            display: flex;
+            gap: 3px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border: 1.5px solid #bdc3c7;
+            border-radius: 50%;
+            display: inline-block;
+            background: #fff;
+        }
+
+
+
+
+
+        .alert-box {
+            background: #FDEDEC;
+            border: 1px solid #E74C3C;
+            color: #C0392B;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+        }
+
+        /* INTRO PAGE */
+        .intro-text {
+            font-size: 1.1rem;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .usage-list {
+            list-style: none;
+            counter-reset: usage-counter;
+        }
+
+        .usage-list li {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 15px;
+        }
+
+        .usage-list li::before {
+            counter-increment: usage-counter;
+            content: counter(usage-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 35px;
+            height: 35px;
+            background: var(--accent);
+            color: white;
+            font-family: var(--font-display);
+            font-weight: 700;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+        }
+
+        /* CTA PAGE */
+        .cta-box {
+            background: var(--primary);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .cta-box h3,
+        .cta-box p,
+        .cta-box strong,
+        .cta-box li {
+            color: white !important;
+        }
+
+        .cta-box h3 {
+            border: none;
+            margin-bottom: 15px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CAPA -->
+    <div class="page cover">
+        <div class="cover-visual"></div>
+        <div class="cover-content">
+            <h1 class="cover-title">Protocolo<br>NeuroBaby</h1>
+            <div class="cover-subtitle">O Checklist de Estimulação Diária<br>(0 a 12 Meses)</div>
+            <div class="cover-hook">"Não é um curso. É um plano de ação para ativar a inteligência do seu bebê."</div>
+            <div class="cover-author"
+                style="background: var(--primary); color: white; padding: 10px 20px; border-radius: 4px; font-size: 0.8rem;">
+                PROTOCOLO 100% BASEADO EM EVIDÊNCIAS DA NEUROCIÊNCIA</div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 1: BOAS VINDAS -->
+    <div class="page">
+        <h2 style="font-size: 2.5rem; border:none; margin-bottom:30px;">O Manual do Usuário do Cérebro do Seu Bebê</h2>
+
+        <p class="intro-text">Parabéns. Enquanto 90% dos pais compram brinquedos que "distraem", você investiu em uma
+            ferramenta que <strong>desenvolve</strong>.</p>
+
+        <p class="intro-text">Você tem em mãos um mapa baseado na neurociência. Nos primeiros 12 meses, o cérebro do seu
+            filho faz mais conexões (sinapses) do que fará no resto da vida inteira. Chamamos isso de <strong>Janela de
+                Ouro</strong>.</p>
+
+        <h3 style="margin-bottom: 20px;">COMO USAR ESTE PROTOCOLO:</h3>
+
+        <ol class="usage-list">
+            <li><strong>Impressão Única:</strong> Recomendamos imprimir este protocolo completo uma única vez. Cada
+                página foi desenhada para durar o mês inteiro.</li>
+            <li><strong>Acompanhamento de 28 Dias:</strong> Cada atividade possui uma grade de pontos representando as 4
+                semanas do mês. Marque um pontinho a cada dia que realizar a atividade.</li>
+            <li><strong>Consistência > Intensidade:</strong> 10 a 15 minutos diários valem mais do que horas acumuladas.
+                O objetivo é criar o hábito da estimulação.</li>
+            <li><strong>Respeite o Bebê:</strong> O cérebro só aprende em estado de relaxamento e segurança. Se o bebê
+                estiver irritado, pule para o próximo dia.</li>
+            <li><strong>Registro de Evolução:</strong> No final de 12 meses, você terá um diário visual completo do
+                crescimento neural do seu filho.</li>
+        </ol>
+
+        <p
+            style="margin-top: 40px; font-size: 1.5rem; font-family: var(--font-display); font-weight: 700; text-align: center; color: var(--primary);">
+            Vamos começar a criar um gênio?</p>
+    </div>
+
+    <!-- MÊS 0 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 0: O Despertar</div>
+            <div class="month-weeks">Semanas 1-4</div>
+        </div>
+
+        <div class="month-meta">
+            <div class="meta-item">
+                <span class="meta-label">O Foco</span>
+                <span class="meta-value">Vínculo, Visão de Curto Alcance e Segurança</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">A Meta</span>
+                <span class="meta-value">Bebê fixar o olhar no seu rosto</span>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Progresso Mensal (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência (Por quê?)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-status">
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Contato Pele a Pele</td>
+                    <td class="col-how">Coloque o bebê apenas de fralda sobre seu peito nu por 20 min.</td>
+                    <td class="col-why">Regula cortisol e ativa ocitocina no cérebro dele e no seu.</td>
+                </tr>
+                <tr>
+                    <td class="col-status">
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Rastreamento Visual</td>
+                    <td class="col-how">Mova seu rosto lentamente a 30cm dos olhos dele. Pause para ele focar.</td>
+                    <td class="col-why">Fortalece músculos oculares e conexões no córtex visual.</td>
+                </tr>
+                <tr>
+                    <td class="col-status">
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Sons Ritmados</td>
+                    <td class="col-how">Cante uma música simples ("Nana Neném") repetindo o tom e ritmo.</td>
+                    <td class="col-why">Estimula lobo temporal e cria padrões de linguagem.</td>
+                </tr>
+                <tr>
+                    <td class="col-status">
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Reflexo de Preensão</td>
+                    <td class="col-how">Coloque seu dedo na palma da mão dele e deixe-o apertar.</td>
+                    <td class="col-why">Ativa vias motoras primitivas e conexão cérebro-mão.</td>
+                </tr>
+                <tr>
+                    <td class="col-status">
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Banho de Luz</td>
+                    <td class="col-how">Exponha o bebê à luz natural (indireta) pela manhã.</td>
+                    <td class="col-why">Regula o Ciclo Circadiano ajudando no sono noturno.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert-box">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>ALERTA VERMELHO:</strong> Se o bebê não fixar o olhar por 2-3 segundos ou não reagir a sons
+                altos até o fim do mês, consulte o pediatra.</div>
+        </div>
+    </div>
+
+    <!-- MÊS 1 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 1: Alto Contraste</div>
+            <div class="month-weeks">Semanas 5-8</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Fortalecimento do
+                    Pescoço e Foco Visual</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Levantar a cabeça por
+                    alguns segundos</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Cartões de Contraste</td>
+                    <td class="col-how">Mostre imagens em Preto e Branco a 30cm do rosto por 2 min.</td>
+                    <td class="col-why">Alto contraste é o único estímulo que a retina imatura processa bem.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Tummy Time</td>
+                    <td class="col-how">Deixe-o de bruços por 3 min, 3x ao dia. Fique na frente dele.</td>
+                    <td class="col-why">Vital para fortalecer pescoço e evitar "cabeça chata".</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Massagem Facial</td>
+                    <td class="col-how">Faça círculos suaves nas bochechas e queixo com os dedos.</td>
+                    <td class="col-why">Mapeia o rosto no córtex sensorial e ajuda na sucção.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">A Voz Variada</td>
+                    <td class="col-how">Fale alternando entre agudo (fofinho) e grave. Narre o dia.</td>
+                    <td class="col-why">Ensina discriminação de frequências sonoras.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Toque de Texturas</td>
+                    <td class="col-how">Passe algodão, seda ou lã suavemente na pele dele.</td>
+                    <td class="col-why">Ativa receptores táteis e cria o "mapa do corpo".</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="alert-box"><span class="alert-icon">⚠️</span>
+            <div><strong>ALERTA VERMELHO:</strong> Se ele não levantar a cabeça nem por 1 segundo no Tummy Time,
+                consulte o pediatra.</div>
+        </div>
+    </div>
+
+    <!-- MÊS 2 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 2: O Sorriso</div>
+            <div class="month-weeks">Semanas 9-12</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Sorriso Social e
+                    Controle de Cabeça</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Sustentar cabeça por
+                    10s e sorrir</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Rastreamento Colorido</td>
+                    <td class="col-how">Mova um objeto vermelho ou laranja de um lado para o outro.</td>
+                    <td class="col-why">Treina coordenação olho-movimento e percepção de cor.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Tummy Time c/ Espelho</td>
+                    <td class="col-how">Coloque um espelho inquebrável à frente dele de bruços.</td>
+                    <td class="col-why">Curiosidade de ver o "outro bebê" motiva levantar a cabeça.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Conversa no Espelho</td>
+                    <td class="col-how">Com ele no colo, converse olhando para o reflexo de vocês.</td>
+                    <td class="col-why">Ativa neurônios-espelho e reconhecimento facial.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Música e Chocalho</td>
+                    <td class="col-how">Ofereça um chocalho leve e ajude-o a balançar.</td>
+                    <td class="col-why">Ensina física básica e Causa-Efeito.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Vertical Suportada</td>
+                    <td class="col-how">Segure-o sentado no seu colo, apoiando bem o tronco.</td>
+                    <td class="col-why">Muda a perspectiva visual e treina labirinto (equilíbrio).</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="alert-box"><span class="alert-icon">⚠️</span>
+            <div><strong>ALERTA VERMELHO:</strong> Ausência de sorriso social pode indicar necessidade de avaliação.
+            </div>
+        </div>
+    </div>
+
+    <!-- MÊS 3 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 3: A Firmeza</div>
+            <div class="month-weeks">Semanas 13-16</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Cabeça firme e Mãos
+                    abertas</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Segurar cabeça por 30s
+                    e balbuciar</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">O Aviãozinho</td>
+                    <td class="col-how">Deite de costas e eleve o bebê nas pernas, balançando.</td>
+                    <td class="col-why">Estímulo para o sistema vestibular (equilíbrio).</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Alcance Motivado</td>
+                    <td class="col-how">No Tummy Time, coloque brinquedo favorito quase fora de alcance.</td>
+                    <td class="col-why">Desejo ativa córtex motor para iniciar movimento.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Diálogo do Balbucio</td>
+                    <td class="col-how">Quando ele disser "Ahhh", repete "Ahhh". Faça turnos.</td>
+                    <td class="col-why">Ensina que comunicação é troca (eu falo, você escuta).</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Concerto de Mozart</td>
+                    <td class="col-how">Toque música clássica ou instrumental rica por 10 min.</td>
+                    <td class="col-why">Ativa múltiplas áreas do cérebro simultaneamente.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Exploração Tátil</td>
+                    <td class="col-how">Guie a mão dele para tocar seu rosto, cabelo e boca.</td>
+                    <td class="col-why">Refina o tato e a coordenação mão-olho.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="alert-box"><span class="alert-icon">⚠️</span>
+            <div><strong>ALERTA VERMELHO:</strong> Cabeça caída ou punhos fechados o tempo todo requerem atenção.</div>
+        </div>
+    </div>
+
+    <!-- MÊS 4 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 4: O Giro</div>
+            <div class="month-weeks">Semanas 17-20</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Rolar e Agarrar com
+                    intenção</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Rolar e levar objetos
+                    à boca</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Treino de Rolar</td>
+                    <td class="col-how">De costas, mostre brinquedo e mova para lateral.</td>
+                    <td class="col-why">Conecta hemisférios cerebrais e fortalece tronco.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Alcance Cruzado</td>
+                    <td class="col-how">Ofereça brinquedo do lado esquerdo para mão direita.</td>
+                    <td class="col-why">Ativa o Corpo Caloso (ponte entre hemisférios).</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Chocalho Caseiro</td>
+                    <td class="col-how">Garrafa pet pequena com arroz. Deixe ele agitar.</td>
+                    <td class="col-why">Refina preensão e audição.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Palmas, Palmas</td>
+                    <td class="col-how">Cante batendo palmas na frente dele.</td>
+                    <td class="col-why">Incentiva imitação motora e ritmo.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Sentar com Apoio</td>
+                    <td class="col-how">Sente-o no sofá com almofadas em volta.</td>
+                    <td class="col-why">Nova visão vertical de mundo.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="alert-box"><span class="alert-icon">⚠️</span>
+            <div><strong>ALERTA VERMELHO:</strong> Se ele não leva nada à boca ou não tenta rolar, observe.</div>
+        </div>
+    </div>
+
+    <!-- MÊS 5 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 5: Coordenação</div>
+            <div class="month-weeks">Semanas 21-24</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Transferir objetos e
+                    Sentar melhor</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Passar brinquedo de
+                    uma mão para a outra</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">A Transferência</td>
+                    <td class="col-how">Dê um objeto. Ofereça outro na mesma mão para forçar a troca.</td>
+                    <td class="col-why">Marco gigante de coordenação bilateral fina.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Pés na Boca</td>
+                    <td class="col-how">Deixe-o brincar com os próprios pés.</td>
+                    <td class="col-why">Consciência corporal completa e alongamento.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">As Vogais</td>
+                    <td class="col-how">Repita: "AAA", "EEE", "UUU" frente a frente.</td>
+                    <td class="col-why">Prepara o aparelho fonador para a fala.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Dança de Colo</td>
+                    <td class="col-how">Coloque música e dance com ele no colo.</td>
+                    <td class="col-why">Sistema vestibular (equilíbrio em movimento).</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Caça ao Brinquedo</td>
+                    <td class="col-how">Coloque brinquedo parcialmente coberto por um pano.</td>
+                    <td class="col-why">Introdução à resolução de problemas visuais.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="alert-box"><span class="alert-icon">⚠️</span>
+            <div><strong>ALERTA VERMELHO:</strong> Se não senta nem com apoio de almofadas, consulte.</div>
+        </div>
+    </div>
+
+    <!-- MÊS 6 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 6: A Memória</div>
+            <div class="month-weeks">Semanas 25-28</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Sentar sozinho e
+                    Permanência do Objeto</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Entender que coisas
+                    escondidas existem</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Cadê? Achou!</td>
+                    <td class="col-how">Cubra seu rosto ou um brinquedo e revele rápido.</td>
+                    <td class="col-why">Ensina "Permanência do Objeto", reduz ansiedade.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Sentar Sozinho</td>
+                    <td class="col-how">Sente-o no tapete com brinquedos entre as pernas.</td>
+                    <td class="col-why">Fortalecimento final do Core.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Conversa Duplicada</td>
+                    <td class="col-how">Responda aos "Ba-ba" e "Da-da" dele.</td>
+                    <td class="col-why">Reforço positivo cria confiança.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Explorar Potes</td>
+                    <td class="col-how">Dê potes de plástico para abrir e bater.</td>
+                    <td class="col-why">Noção de "dentro/fora" e coordenação.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Leitura Interativa</td>
+                    <td class="col-how">Leia livro apontando figuras.</td>
+                    <td class="col-why">Associação visual-auditiva.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="alert-box"><span class="alert-icon">⚠️</span>
+            <div><strong>ALERTA VERMELHO:</strong> Se não balbucia nenhuma sílaba, atenção.</div>
+        </div>
+    </div>
+
+    <!-- PÁGINA: INTERMEZZO (CONGRATS) -->
+    <div class="page"
+        style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+        <h1 style="color:var(--accent); font-size:4rem; margin-bottom: 20px;">6 MESES!</h1>
+        <h2 style="border:none; margin-bottom: 20px;">🚀 Metade do Caminho Concluída</h2>
+        <p style="font-size:1.3rem; max-width: 80%;">Parabéns! Você e seu bebê completaram o primeiro semestre de
+            estimulação neural intensiva.</p>
+        <p style="font-size:1.3rem; max-width: 80%; margin-bottom: 40px;">Até aqui, focamos em <strong>sentidos e
+                conexão</strong>. A partir de agora, o mundo dele se expande para a <strong>exploração ativa</strong>.
+        </p>
+
+        <div class="cta-box" style="width: 100%;">
+            <h3>O que vem no próximo semestre:</h3>
+            <p style="font-size:1.5rem; margin: 20px 0;">Movimento Independente, Pinça Fina, Linguagem Verbal e
+                Exploração de Objetos Complexos.</p>
+            <p>Mantenha a consistência. O melhor ainda está por vir.</p>
+        </div>
+    </div>
+
+    <!-- MÊS 7 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 7: Detalhes</div>
+            <div class="month-weeks">Semanas 29-32</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Pinça Fina e
+                    "Não"</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Pegar coisas pequenas
+                    e entender negação</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Caça às Migalhas</td>
+                    <td class="col-how">Coloque pedacinhos de fruta ou biscoito no prato.</td>
+                    <td class="col-why">Treina "Pinça Fina" - habilidade motora refinada.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">O "Não" Firme</td>
+                    <td class="col-how">Use tom sério quando ele tocar algo perigoso.</td>
+                    <td class="col-why">Início do Lobo Frontal (controle inibitório).</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Engatinhar Ré</td>
+                    <td class="col-how">De bruços, empurre as mãos para trás.</td>
+                    <td class="col-why">Preparação para engatinhar.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Nomear Tudo</td>
+                    <td class="col-how">Aponte e fale: "Mão", "Pé", "Bola".</td>
+                    <td class="col-why">Explosão do vocabulário passivo.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Esconde-Esconde</td>
+                    <td class="col-how">Esconda-se e chame o nome dele.</td>
+                    <td class="col-why">Localização auditiva e memória.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- MÊS 8 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 8: Movimento</div>
+            <div class="month-weeks">Semanas 33-36</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Engatinhar e
+                    Causa-Efeito</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Deslocar-se e entender
+                    instruções</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Circuito de Obstáculos</td>
+                    <td class="col-how">Almofadas no chão para passar por cima.</td>
+                    <td class="col-why">Planejamento motor e resolução espacial.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Instrução Simples</td>
+                    <td class="col-how">Diga "Vem cá" ou "Dá pra mamãe".</td>
+                    <td class="col-why">Teste de compreensão de linguagem.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Botões Mágicos</td>
+                    <td class="col-how">Brinquedos que tocam música ao apertar.</td>
+                    <td class="col-why">Lógica de "ação gera reação".</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Sons de Animais</td>
+                    <td class="col-how">Faça "Miau", "Au-Au" com fotos.</td>
+                    <td class="col-why">Associação complexa e imitação vocal.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Atenção Compartilhada</td>
+                    <td class="col-how">Aponte longe e diga "Olha!".</td>
+                    <td class="col-why">Habilidade social crucial.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="alert-box"><span class="alert-icon">⚠️</span>
+            <div><strong>ALERTA VERMELHO:</strong> Se ele não engatinha de nenhuma forma, comente com o pediatra.</div>
+        </div>
+    </div>
+
+    <!-- MÊS 9 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 9: Em Pé</div>
+            <div class="month-weeks">Semanas 37-40</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Ficar de pé com apoio
+                    e Primeiras Palavras</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Reconhecer
+                    "Mamãe/Papai", levantar nos móveis</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">O Alpinista</td>
+                    <td class="col-how">Brinquedos no sofá para ele levantar para pegar.</td>
+                    <td class="col-why">Fortalece pernas para caminhada.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">O Túnel</td>
+                    <td class="col-how">Caixa de papelão para passar por dentro.</td>
+                    <td class="col-why">Noção de profundidade.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Tchau Tchau</td>
+                    <td class="col-how">Ensine o gesto de dar tchau ao sair.</td>
+                    <td class="col-why">Linguagem não-verbal e imitação.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Empilhar Blocos</td>
+                    <td class="col-how">Dê blocos grandes para montar/derrubar.</td>
+                    <td class="col-why">Controle motor fino e física.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Quem é?</td>
+                    <td class="col-how">Pergunte "Cadê a mamãe?" e aponte.</td>
+                    <td class="col-why">Identidade e reconhecimento.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- MÊS 10 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 10: O Andar</div>
+            <div class="month-weeks">Semanas 41-44</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Andar lateral e
+                    Encaixe</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Dar passos segurando e
+                    falar 1-2 palavras</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Cruzeiro (Lateral)</td>
+                    <td class="col-how">Incentive andar de lado segurando no sofá.</td>
+                    <td class="col-why">Treina equilíbrio dinâmico com segurança.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Encaixe Simples</td>
+                    <td class="col-how">Brinquedo de colocar formas ou bola no buraco.</td>
+                    <td class="col-why">Raciocínio lógico e geometria.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Puxar Pela Corda</td>
+                    <td class="col-how">Brinquedo de rodinhas com cordinha.</td>
+                    <td class="col-why">Uso de ferramentas.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">A Dança</td>
+                    <td class="col-how">Dance segurando as mãos dele.</td>
+                    <td class="col-why">Ritmo e fortalecimento muscular.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Nomear e Apontar</td>
+                    <td class="col-how">"Cadê a luz?". Ele deve olhar ou apontar.</td>
+                    <td class="col-why">Validação de vocabulário.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- MÊS 11 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 11: A Coragem</div>
+            <div class="month-weeks">Semanas 45-48</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Ficar em pé sem apoio
+                    e Instruções</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Ficar de pé solto e
+                    seguir ordens</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">O Equilibrista</td>
+                    <td class="col-how">Brinquedo em cada mão em pé para ele soltar o sofá.</td>
+                    <td class="col-why">Treina o equilíbrio autônomo.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Entregador</td>
+                    <td class="col-how">Peça: "Leva a bola pro papai".</td>
+                    <td class="col-why">Memória de trabalho e função executiva.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Imitação de Ações</td>
+                    <td class="col-how">Penteie o cabelo, veja se ele copia.</td>
+                    <td class="col-why">Neurônios-espelho sociabilização.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Obstáculo Baixo</td>
+                    <td class="col-how">Almofada para passar por cima (andando/engatinhando).</td>
+                    <td class="col-why">Coordenação motora grossa.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Exploração Segura</td>
+                    <td class="col-how">Gavetas "seguras" na cozinha para ele mexer.</td>
+                    <td class="col-why">Autonomia e curiosidade.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- MÊS 12 -->
+    <div class="page">
+        <div class="month-header">
+            <div class="month-title">MÊS 12: A Formatura</div>
+            <div class="month-weeks">Semanas 49-52</div>
+        </div>
+        <div class="month-meta">
+            <div class="meta-item"><span class="meta-label">O Foco</span><span class="meta-value">Caminhada e Primeiras
+                    Frases</span></div>
+            <div class="meta-item"><span class="meta-label">A Meta</span><span class="meta-value">Dar passos e
+                    vocabulário de 3-5 palavras</span></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-status">Acompanhamento (S1-S4)</th>
+                    <th class="col-action">Ação</th>
+                    <th class="col-how">Como Fazer</th>
+                    <th class="col-why">Neurociência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Caminhada Livre</td>
+                    <td class="col-how">Fique a 2m dele e chame-o.</td>
+                    <td class="col-why">Confiança emocional para passos solo.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Onde está X?</td>
+                    <td class="col-how">"Onde está o sapato?". Ele deve buscar.</td>
+                    <td class="col-why">Compreensão complexa e memória.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Construtor</td>
+                    <td class="col-how">Empilhar 2 ou 3 blocos sem derrubar.</td>
+                    <td class="col-why">Controle fino de precisão.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">Cabeça, Ombro...</td>
+                    <td class="col-how">Cante músicas apontando partes do corpo.</td>
+                    <td class="col-why">Consciência corporal.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="checkbox-group">
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                            <div class="week-row"><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span><span class="dot"></span><span
+                                    class="dot"></span><span class="dot"></span></div>
+                        </div>
+                    </td>
+                    <td class="col-action">A Celebração</td>
+                    <td class="col-how">Tire fotos e bata palmas para cada conquista.</td>
+                    <td class="col-why">Reforço positivo cria criança segura.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="alert-box"><span class="alert-icon">⚠️</span>
+            <div><strong>ALERTA DE GRADUAÇÃO:</strong> Se o bebê não anda nem com apoio ou não fala nada, consulte
+                especialista.</div>
+        </div>
+    </div>
+
+    <!-- PÁGINA FINAL: PARABÉNS -->
+    <div class="page"
+        style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%);">
+        <h1 style="color:var(--accent); font-size: 4rem; margin-bottom: 20px;">PARABÉNS!</h1>
+        <h2 style="border:none; font-size: 2rem; color:var(--primary); margin-bottom: 40px;">Você completou o Ciclo de
+            Ouro.</h2>
+
+        <p style="font-size: 1.4rem; max-width: 80%; margin-bottom: 30px;">
+            Mais do que "estimular", você construiu as fundações de um cérebro saudável, curioso e amado.
+        </p>
+
+        <p style="font-size: 1.4rem; max-width: 80%; margin-bottom: 50px;">
+            As sinapses criadas neste ano acompanharão seu filho por toda a vida. O melhor presente que você poderia
+            dar, você já deu: <strong>Sua presença intencional.</strong>
+        </p>
+
+    </div>
+    </div>
+
+    <!-- PÁGINA DE UPSELL FINAL -->
+    <div class="page"
+        style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+        <div class="month-header" style="border:none; justify-content:center; margin-bottom: 40px;">
+            <div class="month-title" style="color:var(--accent); font-size: 2.5rem;">Dê o Próximo Passo</div>
+        </div>
+
+        <p style="font-size: 1.4rem; max-width: 80%; margin-bottom: 30px;">
+            Agora que você dominou a estimulação mental, que tal dominar o sono e a rotina?
+        </p>
+
+        <div class="cta-box" style="width: 100%; background: #2980b9;">
+            <h2 style="color:white; border:none; margin-bottom: 15px;">🌙 NeuroSleep</h2>
+            <p style="font-size: 1.2rem; color: #e1f5fe; margin-bottom: 25px;">O Manual do Sono e Rotina (0 a 2
+                anos)</p>
+
+            <ul style="text-align: left; color: white; margin: 0 auto 30px; max-width: 80%; list-style: none;">
+                <li style="margin-bottom: 10px;">✅ Como ajustar o ciclo circadiano do bebê</li>
+                <li style="margin-bottom: 10px;">✅ Técnicas de relaxamento pré-sono</li>
+                <li style="margin-bottom: 10px;">✅ Rotinas previsíveis que geram segurança</li>
+                <li style="margin-bottom: 10px;">✅ O fim das noites em claro</li>
+            </ul>
+
+            <a href="#" class="cta-btn" style="background: white; color: #2980b9;">Quero conhecer o NeuroSleep</a>
+        </div>
+
+        <p style="margin-top: 40px; font-style: italic; color: var(--text-light);">
+            Garanta que o desenvolvimento do seu filho continue com noites de sono reparador.
+        </p>
+    </div>
+
+</body>
+
+</html>
