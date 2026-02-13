@@ -13,7 +13,7 @@ import Footer from "@/components/landing/footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white relative">
+    <main className="min-h-screen bg-background relative">
       <TopBar />
       <HeroSection />
       <SolutionSection />

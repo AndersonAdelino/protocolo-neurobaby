@@ -9,23 +9,23 @@ const buttonVariants = cva(
     {
         variants: {
             variant: {
-                default: "bg-primary text-primary-foreground hover:bg-primary/90",
+                default: "bg-primary text-primary-foreground hover:bg-primary/90 clay-button border-b-4 border-primary/20 active:border-b-0 active:translate-y-1",
                 destructive:
-                    "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+                    "bg-destructive text-destructive-foreground hover:bg-destructive/90 clay-button",
                 outline:
-                    "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+                    "border-2 border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-2xl",
                 secondary:
-                    "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-                ghost: "hover:bg-accent hover:text-accent-foreground",
+                    "bg-secondary text-secondary-foreground hover:bg-secondary/80 clay-button",
+                ghost: "hover:bg-muted hover:text-muted-foreground rounded-2xl",
                 link: "text-primary underline-offset-4 hover:underline",
-                cta: "bg-accent text-accent-foreground hover:bg-accent/90 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 font-bold tracking-wide", // Consistent CTA
+                cta: "bg-primary text-primary-foreground hover:bg-primary/90 clay-button shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 font-extrabold tracking-wide text-lg border-b-4 border-black/10 active:border-b-0 active:translate-y-1",
             },
             size: {
-                default: "h-10 px-4 py-2",
-                sm: "h-9 rounded-md px-3",
-                lg: "h-11 rounded-md px-8",
-                icon: "h-10 w-10",
-                xl: "h-16 px-8 text-lg md:text-xl rounded-full", // Pill shape for CTA
+                default: "h-12 px-6 py-2 rounded-2xl",
+                sm: "h-10 rounded-xl px-4",
+                lg: "h-14 rounded-2xl px-8",
+                icon: "h-12 w-12 rounded-2xl",
+                xl: "h-20 px-10 text-xl md:text-2xl rounded-3xl",
             },
         },
         defaultVariants: {

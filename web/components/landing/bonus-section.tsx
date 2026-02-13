@@ -2,7 +2,7 @@ import { Gift, MessageSquare, BrainCircuit, ShoppingBag } from "lucide-react";
 
 const bonuses = [
     {
-        title: "Salto da Fala (1-2 Anos)",
+        title: "Checklist Salto da Fala (1-2 Anos)",
         desc: "Domine a fase da explosão de vocabulário. Saiba exatamente como estimular sem pressão.",
         value: "R$ 47,00",
         icon: MessageSquare,
@@ -10,7 +10,7 @@ const bonuses = [
         bg: "bg-blue-50"
     },
     {
-        title: "Lógica e Temperamento",
+        title: "Checklist Lógica e Temperamento (2-3 Anos)",
         desc: "Como lidar com a fase de 2-3 anos usando estímulos que acalmam e ensinam raciocínio.",
         value: "R$ 47,00",
         icon: BrainCircuit,
@@ -18,8 +18,8 @@ const bonuses = [
         bg: "bg-purple-50"
     },
     {
-        title: "O Enxoval da Inteligência",
-        desc: "O guia definitivo de quais brinquedos realmente importam e o que é puro marketing.",
+        title: "Checklist de Brinquedos e Estímulos",
+        desc: "O guia definitivo de quais brinquedos realmente importam para o desenvolvimento e o que é puro marketing.",
         value: "R$ 97,00",
         icon: ShoppingBag,
         color: "text-amber-500",
@@ -33,11 +33,8 @@ export default function BonusSection() {
             <div className="container px-4 md:px-6 mx-auto max-w-7xl">
 
                 <div className="flex flex-col items-center text-center space-y-6 mb-20">
-                    <div className="bg-red-50 text-red-600 border border-red-100 px-4 py-1.5 rounded-full font-bold text-xs uppercase tracking-widest">
-                        🎁 Presentes Exclusivos de Lançamento
-                    </div>
                     <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl text-slate-900 leading-tight">
-                        Acesso antecipado aos <span className="text-primary italic">próximos passos</span>
+                        Bônus Especiais <span className="text-primary italic">(Hoje Grátis!)</span>
                     </h2>
                     <p className="max-w-2xl text-slate-500 font-medium">Garanta o desenvolvimento contínuo do seu filho até os 3 anos de idade.</p>
                 </div>
