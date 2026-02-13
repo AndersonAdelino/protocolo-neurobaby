@@ -24,9 +24,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body
         className={`${varelaRound.variable} ${nunitoSans.variable} antialiased font-sans bg-background text-foreground`}
+        suppressHydrationWarning
       >
         {children}
       </body>

@@ -17,23 +17,23 @@
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(0 0% 17%);
 
-  --primary: hsl(43 74% 66%);
-  /* Tuscan Sun #E8C468 */
-  --primary-foreground: hsl(0 0% 17%);
-  /* Graphite for contrast on yellow */
+  --primary: hsl(142 60% 45%);
+  /* Fresh Green */
+  --primary-foreground: hsl(0 0% 100%);
+  /* White text for better contrast on green */
 
-  --secondary: hsl(89 20% 61%);
-  /* Muted Olive #9CAF88 */
-  --secondary-foreground: hsl(0 0% 100%);
-  /* White */
+  --secondary: hsl(43 74% 66%);
+  /* Tuscan Sun (Yellow) moved to Secondary/Accent role */
+  --secondary-foreground: hsl(0 0% 17%);
+  /* Graphite */
 
   --muted: hsl(30 12% 83%);
   /* Dust Grey #D9D4CF */
   --muted-foreground: hsl(24 5% 45%);
 
-  --accent: hsl(43 74% 76%);
-  /* Lighter Tuscan Sun */
-  --accent-foreground: hsl(0 0% 17%);
+  --accent: hsl(142 60% 90%);
+  /* Light Green Accent */
+  --accent-foreground: hsl(142 60% 30%);
 
   --destructive: hsl(0 84.2% 60.2%);
   --destructive-foreground: hsl(0 0% 98%);
@@ -41,8 +41,8 @@
   --border: hsl(30 12% 83%);
   /* Dust Grey/Sand #D9D4CF */
   --input: hsl(30 12% 83%);
-  --ring: hsl(43 74% 66%);
-  /* Tuscan Sun */
+  --ring: hsl(142 60% 45%);
+  /* Match Primary */
 
   --radius: 1rem;
   /* Rounded corners for Claymorphism */
