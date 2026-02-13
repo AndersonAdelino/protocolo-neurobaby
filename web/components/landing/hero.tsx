@@ -14,31 +14,32 @@ export default function HeroSection() {
                     {/* Main Content */}
                     <div className="flex flex-col space-y-8 lg:space-y-10 items-center w-full">
                         <FadeIn className="space-y-4 lg:space-y-6">
-                            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold tracking-tight text-foreground leading-[1.1] text-balance">
-                                Transforme seu bebê no <span className="text-primary italic relative inline-block whitespace-nowrap">
-                                    aluno mais inteligente
+                            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-foreground leading-[1.1] text-balance">
+                                O Checklist do <span className="text-primary italic relative inline-block whitespace-nowrap">
+                                    Bebê Esperto:
                                     <svg className="absolute w-full h-2 lg:h-3 -bottom-1 left-0 text-primary/30 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
                                         <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
                                     </svg>
-                                </span> da turma antes de falar.
+                                </span> <br className="hidden md:block" /> Como incentivar a inteligência do seu filho dos 0 aos 12 meses.
                             </h1>
 
                             <p className="mx-auto max-w-2xl text-muted-foreground text-base sm:text-lg md:text-xl font-sans font-medium leading-relaxed px-2 text-pretty">
-                                A maioria dos pais apenas "distrai" seus filhos. Descubra como <strong className="text-foreground">ativar a inteligência real</strong> do seu bebê em apenas 15 minutos por dia com um protocolo prático e validado.
+                                O guia prático de 15 minutos para pais que querem ver o bebê se desenvolvendo mais rápido através de estímulos simples e validados.
                             </p>
                         </FadeIn>
 
-                        {/* Video moved here and centered */}
-                        <ScaleIn delay={0.2} className="relative w-full max-w-[800px] aspect-video bg-black rounded-2xl lg:rounded-[2rem] shadow-clay border-4 lg:border-8 border-card overflow-hidden group cursor-pointer mx-auto">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        {/* Video moved here and centered - Portrait Mode */}
+                        <ScaleIn delay={0.2} className="relative w-[75%] sm:w-full max-w-[320px] aspect-[9/16] bg-black rounded-2xl lg:rounded-[2.5rem] shadow-clay border-4 lg:border-8 border-card overflow-hidden group cursor-pointer mx-auto">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-16 h-16 lg:w-24 lg:h-24 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                    <Play className="w-8 h-8 lg:w-10 lg:h-10 text-white fill-current ml-1" />
+                                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                    <Play className="w-8 h-8 lg:w-9 lg:h-9 text-white fill-current ml-1" />
                                 </div>
                             </div>
-                            <div className="absolute bottom-4 left-4 lg:bottom-8 lg:left-8 text-white text-left pr-4">
-                                <p className="text-[10px] lg:text-xs font-bold uppercase tracking-widest text-primary mb-1 lg:mb-2">Vídeo Explicativo</p>
-                                <p className="text-lg lg:text-2xl font-heading font-bold leading-tight">O Segredo da Neuroestimulação</p>
+                            <div className="absolute bottom-6 left-0 right-0 text-white text-center px-6">
+                                <p className="text-lg lg:text-xl font-heading font-black leading-tight drop-shadow-lg">
+                                    Aperte o play e veja o checklist
+                                </p>
                             </div>
                         </ScaleIn>
 

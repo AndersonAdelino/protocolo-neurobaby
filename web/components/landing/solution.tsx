@@ -38,7 +38,7 @@ const inclusions = [
         icon: PiggyBank,
         title: "Economia Inteligente",
         tag: "Guia de Compra",
-        desc: "Pare de gastar com brinquedos inúteis. Use o que você tem em casa e compre apenas o que realmente importa.",
+        desc: "90% dos brinquedos de prateleira são desenhados para vender, não para ensinar. Descubra os itens que realmente constroem neurônios.",
         color: "text-teal-600",
         bg: "bg-teal-50"
     }
@@ -51,7 +51,7 @@ export default function SolutionSection() {
                 <div className="text-center mb-12 lg:mb-20 space-y-4">
                     <FadeIn>
                         <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight md:text-5xl text-foreground leading-tight text-balance">
-                            O que você recebe no <span className="text-primary italic">Protocolo Neurobaby</span>
+                            O que você recebe no <span className="text-primary italic">Checklist do Bebê Esperto?</span>
                         </h2>
                         <p className="max-w-2xl mx-auto text-muted-foreground font-medium text-base md:text-lg px-2 text-pretty mt-4">
                             Um método estruturado para pais que buscam a excelência no desenvolvimento dos seus filhos.
