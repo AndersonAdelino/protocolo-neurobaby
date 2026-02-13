@@ -8,7 +8,7 @@ export default function AgitationSection() {
 
                 <FadeIn className="space-y-4 max-w-3xl mx-auto">
                     <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight md:text-5xl text-foreground text-balance">
-                        Por que famílias inteligentes <br className="hidden md:block" /> <span className="text-primary italic">já escolheram este método?</span>
+                        Por que famílias inteligentes <br className="hidden md:block" /> <span className="text-primary italic">já escolheram o Checklist do Bebê Esperto?</span>
                     </h2>
                     <p className="text-muted-foreground font-medium text-base md:text-lg px-2 text-pretty">
                         O desenvolvimento infantil é uma janela única que não se repete.

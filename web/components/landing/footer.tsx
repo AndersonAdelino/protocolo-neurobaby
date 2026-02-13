@@ -7,7 +7,7 @@ export default function Footer() {
                     <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
                     <a href="#" className="hover:text-white transition-colors">Contato</a>
                 </div>
-                <p>© {new Date().getFullYear()} Protocolo NeuroBaby. Todos os direitos reservados.</p>
+                <p>© {new Date().getFullYear()} Checklist do Bebê Esperto (0-12m). Todos os direitos reservados.</p>
                 <p className="text-xs text-slate-600 max-w-sm mx-auto">
                     Este produto não substitui o parecer médico profissional. Sempre consulte um pediatra para questões de saúde do seu bebê.
                 </p>

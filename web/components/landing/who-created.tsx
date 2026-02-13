@@ -9,40 +9,43 @@ export default function WhoCreatedSection() {
 
                     {/* Visual - Elegant Dark Frame */}
                     <div className="relative order-2 lg:order-1 flex justify-center">
-                        <div className="relative w-full max-w-[450px] aspect-[4/5] bg-slate-800 rounded-[3rem] border border-white/5 shadow-2xl overflow-hidden flex items-center justify-center p-8">
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent opacity-60"></div>
-                            <span className="text-slate-500 font-bold uppercase tracking-widest text-sm text-center">
-                                Espaço para Foto Profissional <br /> (Anderson Adelino)
-                            </span>
-                        </div>
-                        {/* Decorative Badge */}
-                        <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-[2rem] shadow-2xl border border-slate-100 hidden md:block">
-                            <p className="text-slate-900 font-black text-4xl italic">1.2k+</p>
-                            <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest mt-1">Alunos Ativos</p>
+                        <div className="relative w-full max-w-[450px] aspect-[4/5] bg-slate-800 rounded-[3rem] border border-white/5 shadow-2xl overflow-hidden">
+                            <img
+                                src="/luciana-family.png"
+                                alt="Luciana Barbosa e sua Família"
+                                className="w-full h-full object-cover opacity-100 group-hover:scale-105 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+
+                            {/* Stats Overlay on Visual */}
+                            <div className="absolute bottom-8 left-8 right-8 grid grid-cols-2 gap-4">
+                                <div className="bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/10 text-center">
+                                    <p className="text-primary font-black text-2xl">+10</p>
+                                    <p className="text-white font-bold text-[8px] uppercase tracking-widest">Anos de Experiência</p>
+                                </div>
+                                <div className="bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/10 text-center">
+                                    <p className="text-primary font-black text-2xl">+10k</p>
+                                    <p className="text-white font-bold text-[8px] uppercase tracking-widest">Famílias Ajudadas</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     {/* Content */}
                     <div className="space-y-10 order-1 lg:order-2">
                         <div className="space-y-4">
-                            <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl text-white leading-tight">
-                                Quem está por trás <br /> <span className="text-primary italic">do método?</span>
+                            <p className="text-primary font-bold uppercase tracking-widest text-sm">Sobre a Autora</p>
+                            <h2 className="text-4xl font-extrabold tracking-tight md:text-6xl text-white leading-tight">
+                                Luciana Barbosa
                             </h2>
+                            <p className="text-slate-400 font-bold text-lg italic">Entusiasta em Desenvolvimento Cognitivo Infantil</p>
                             <div className="h-1.5 w-24 bg-primary rounded-full"></div>
                         </div>
 
-                        <div className="space-y-8 text-slate-300 text-lg md:text-xl font-medium leading-relaxed">
-                            <p>
-                                <strong className="text-white text-3xl block mb-6 font-black tracking-tight underline-offset-8 decoration-primary/30 decoration-4">Anderson Adelino</strong>
-                            </p>
-                            <p>
-                                Pai dedicado e entusiasta da neurociência aplicada, Anderson decidiu transformar o complexo mundo acadêmico em algo prático e acessível.
-                            </p>
-                            <p>
-                                O <span className="text-white font-bold italic">Protocolo NeuroBaby</span> nasceu da busca incessante pelo estímulo ideal para garantir que seu próprio filho tivesse a melhor base cognitiva possível.
-                            </p>
-                            <p>
-                                O que começou como uma necessidade familiar, hoje é um movimento que ajuda centenas de pais a recuperarem a confiança e a clareza sobre como educar gênio na era das distrações.
+                        <div className="space-y-8 text-slate-300 text-lg md:text-xl font-medium leading-relaxed italic">
+                            <p className="relative">
+                                <span className="absolute -top-6 -left-4 text-primary opacity-20 text-8xl font-serif">"</span>
+                                "A inteligência não é um dom, é um estímulo. Meu papel é dar aos pais o mapa para não deixarem o futuro dos filhos ao acaso."
                             </p>
                         </div>
                     </div>

@@ -14,7 +14,7 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Protocolo NeuroBaby | Ative a Inteligência do Seu Bebê (0-12 Meses)",
+  title: "Checklist do Bebê Esperto (0-12m) | Ative a Inteligência do Seu Bebê (0-12 Meses)",
   description: "Checklist diário prático de 15 minutos para acelerar o desenvolvimento motor e cognitivo do seu filho.",
 };
 

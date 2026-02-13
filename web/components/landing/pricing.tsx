@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, X, AlertCircle } from "lucide-react";
+import { Check, X, AlertCircle, Star, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -11,6 +11,7 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { useState } from "react";
+import CountdownTimer from "./countdown-timer";
 
 export default function PricingSection() {
     const [showHint, setShowHint] = useState(false);
@@ -30,7 +31,7 @@ export default function PricingSection() {
                         </div>
                         <div className="space-y-4">
                             <h3 className="text-2xl md:text-3xl font-black text-slate-900 leading-tight">Espere! Você vai levar apenas metade do caminho?</h3>
-                            <p className="text-slate-600 font-medium">94% dos pais escolhem o <span className="text-primary font-bold">Plano Completo</span> para garantir que o bebê não pare de evoluir após os 12 meses. Por apenas <span className="text-slate-900 font-bold">R$ 17,00 a mais</span>, você destrava todo o futuro do seu filho.</p>
+                            <p className="text-slate-600 font-medium">94% dos pais escolhem o <span className="text-primary font-bold">Plano Bebê Brilhante (0 a 3 anos)</span> para garantir que o bebê não pare de evoluir após os 12 meses. Por apenas <span className="text-slate-900 font-bold">R$ 17,00 a mais</span>, você destrava todo o futuro do seu filho.</p>
                         </div>
                         <div className="flex flex-col gap-4 pt-4">
                             <Button size="xl" className="h-16 rounded-2xl text-lg font-bold bg-primary hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20" asChild>
@@ -52,7 +53,9 @@ export default function PricingSection() {
 
             <div className="container px-4 md:px-6 mx-auto max-w-6xl relative z-10">
 
-                <div className="text-center mb-16 space-y-6">
+                <div className="text-center mb-16 flex flex-col items-center gap-8">
+                    <CountdownTimer />
+
                     <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl text-slate-900 leading-tight">
                         Escolha o plano ideal para <br /> <span className="text-primary italic">o futuro do seu bebê</span>
                     </h2>
@@ -78,16 +81,22 @@ export default function PricingSection() {
 
                             <ul className="space-y-4">
                                 <li className="flex items-center gap-3 text-slate-700 font-bold text-sm">
-                                    <Check className="w-4 h-4 text-emerald-500" strokeWidth={3} /> Protocolo Completo (0-12m)
+                                    <Check className="w-4 h-4 text-emerald-500" strokeWidth={3} /> Checklist do Bebê Esperto (0-12m)
+                                </li>
+                                <li className="flex items-center gap-3 text-slate-700 font-bold text-sm">
+                                    <Check className="w-4 h-4 text-emerald-500" strokeWidth={3} /> 7 Dias de Garantia
+                                </li>
+                                <li className="flex items-center gap-3 text-slate-700 font-bold text-sm">
+                                    <Check className="w-4 h-4 text-emerald-500" strokeWidth={3} /> Acesso Imediato
                                 </li>
                                 <li className="flex items-center gap-3 text-slate-400 font-medium text-sm">
-                                    <X className="w-4 h-4 text-slate-300" /> Checklist 1 a 2 Anos
+                                    <X className="w-4 h-4 text-slate-300" /> Checklist Salto da Fala (1-2 Anos)
                                 </li>
                                 <li className="flex items-center gap-3 text-slate-400 font-medium text-sm">
-                                    <X className="w-4 h-4 text-slate-300" /> Checklist 2 a 3 Anos
+                                    <X className="w-4 h-4 text-slate-300" /> Checklist Lógica e Temperamento (2-3 Anos)
                                 </li>
                                 <li className="flex items-center gap-3 text-slate-400 font-medium text-sm">
-                                    <X className="w-4 h-4 text-slate-300" /> Checklist Brinquedos Recomendados
+                                    <X className="w-4 h-4 text-slate-300" /> 50 Itens para um Bebê mais Esperto
                                 </li>
                             </ul>
                         </CardContent>
@@ -103,7 +112,7 @@ export default function PricingSection() {
                             </div>
                             {showHint && (
                                 <p className="text-primary font-bold text-[10px] uppercase tracking-widest text-center animate-in fade-in slide-in-from-top-1 duration-300">
-                                    💡 94% dos pais escolhem o Plano Completo.
+                                    💡 94% dos pais escolhem o Plano Bebê Brilhante.
                                 </p>
                             )}
                         </CardFooter>
@@ -115,7 +124,7 @@ export default function PricingSection() {
                             Recomendado
                         </div>
                         <CardHeader className="p-10 space-y-2">
-                            <CardTitle className="text-3xl font-black text-slate-900 leading-none">Plano Completo</CardTitle>
+                            <CardTitle className="text-3xl font-black text-slate-900 leading-none text-balance">Plano Bebê Brilhante <br /> <span className="text-sm font-bold text-primary">(0 a 3 anos)</span></CardTitle>
                             <CardDescription className="font-bold text-primary uppercase text-xs tracking-widest">O Caminho do Desenvolvimento Total</CardDescription>
                         </CardHeader>
                         <CardContent className="p-10 pt-0 space-y-8 flex-grow">
@@ -125,23 +134,61 @@ export default function PricingSection() {
                                     <span className="text-sm font-bold text-primary">R$</span>
                                     <span className="text-6xl font-extrabold text-primary">27</span>
                                     <span className="text-sm font-bold text-primary">,00</span>
+                                    <span className="text-[10px] font-black text-primary/40 ml-1 uppercase">Pagamento Único</span>
                                 </div>
-                                <p className="text-emerald-600 font-bold text-[10px] uppercase tracking-widest mt-2">✨ Economia de mais de R$ 170,00</p>
+                                <p className="text-emerald-600 font-bold text-[10px] uppercase tracking-widest mt-2">✨ Economia de mais de R$ 170,00 + bônus</p>
+                            </div>
+
+                            {/* Social Proof Card */}
+                            <div className="bg-primary/5 border border-primary/10 rounded-2xl p-3 flex items-center gap-3 mb-6">
+                                <div className="flex -space-x-2">
+                                    {[
+                                        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&h=100&auto=format&fit=crop",
+                                        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&h=100&auto=format&fit=crop",
+                                        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&h=100&auto=format&fit=crop"
+                                    ].map((url, i) => (
+                                        <div key={i} className="w-7 h-7 rounded-full border-2 border-white overflow-hidden bg-slate-200">
+                                            <img src={url} alt="Usuário Escolheu" className="w-full h-full object-cover" />
+                                        </div>
+                                    ))}
+                                </div>
+                                <span className="text-[11px] font-bold text-slate-900 leading-tight">
+                                    Mais de 1.234 pais escolheram essa oferta
+                                </span>
                             </div>
 
                             <div className="space-y-4">
                                 {[
-                                    { text: "Protocolo Completo (0-12m)", strong: true },
-                                    { text: "BÔNUS: Checklist 1 a 2 Anos (Fala)", strong: false },
-                                    { text: "BÔNUS: Checklist 2 a 3 Anos (Lógica)", strong: false },
-                                    { text: "BÔNUS: Checklist Brinquedos e Estímulos", strong: false },
-                                    { text: "Acesso Vitalício + Atualizações", strong: false }
+                                    { text: "Checklist do Bebê Esperto (0-12m)", type: 'main' },
+                                    { text: "BÔNUS: Checklist Salto da Fala (1-2 Anos)", type: 'bonus' },
+                                    { text: "BÔNUS: Checklist Lógica e Temperamento (2-3 Anos)", type: 'bonus' },
+                                    { text: "BÔNUS: 50 Itens para um Bebê mais Esperto", type: 'bonus' },
+                                    { text: "7 Dias de Garantia + Acesso Imediato", type: 'trust' },
+                                    { text: "Acesso Vitalício + Atualizações", type: 'regular' }
                                 ].map((item, i) => (
                                     <div key={i} className="flex items-center gap-3">
-                                        <div className="bg-emerald-50 p-1 rounded-full">
-                                            <Check className="w-3.5 h-3.5 text-emerald-600" strokeWidth={3} />
-                                        </div>
-                                        <span className={`text-sm ${item.strong ? 'font-bold text-slate-900' : 'font-medium text-slate-600'}`}>{item.text}</span>
+                                        {item.type === 'main' ? (
+                                            <>
+                                                <div className="bg-amber-50 p-1 rounded-full">
+                                                    <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" strokeWidth={3} />
+                                                </div>
+                                                <span className="text-sm font-black text-amber-600">{item.text}</span>
+                                            </>
+                                        ) : item.type === 'bonus' ? (
+                                            <>
+                                                <div className="bg-emerald-50 p-1 rounded-full">
+                                                    <Gift className="w-3.5 h-3.5 text-emerald-600" strokeWidth={3} />
+                                                </div>
+                                                <span className="text-sm font-bold text-emerald-600">{item.text}</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div className="bg-emerald-50 p-1 rounded-full">
+                                                    <Check className="w-3.5 h-3.5 text-emerald-600" strokeWidth={3} />
+                                                </div>
+                                                <span className={`text-sm ${item.type === 'trust' ? 'font-bold text-slate-900' : 'font-medium text-slate-600'}`}>{item.text}</span>
+                                            </>
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -149,7 +196,7 @@ export default function PricingSection() {
                         <CardFooter className="p-10 pt-0">
                             <Button size="xl" variant="default" className="w-full h-16 text-lg font-bold shadow-xl shadow-blue-500/20 bg-primary hover:bg-blue-700 text-white rounded-2xl transition-all" asChild>
                                 <a href="#checkout-master">
-                                    Quero o Plano Completo
+                                    Quero o Plano Bebê Brilhante
                                 </a>
                             </Button>
                         </CardFooter>

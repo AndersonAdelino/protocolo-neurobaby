@@ -23,7 +23,7 @@ export default function GuaranteeSection() {
                             <p className="max-w-3xl mx-auto text-lg md:text-xl text-slate-600 font-medium leading-relaxed">
                                 "O risco é todo nosso. O futuro é todo dele."
                                 <br /> <br />
-                                Teste o Protocolo NeuroBaby por 7 dias. Se você não notar uma mudança real na atenção e interação do seu bebê, nós devolveremos 100% do seu investimento. Sem burocracia, com o respeito que sua família merece.
+                                Teste o Checklist do Bebê Esperto (0-12m) por 7 dias. Se você não notar uma mudança real na atenção e interação do seu bebê, nós devolveremos 100% do seu investimento. Sem burocracia, com o respeito que sua família merece.
                             </p>
                         </div>
 

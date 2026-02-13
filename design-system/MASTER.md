@@ -1,4 +1,4 @@
-# Design System: Protocolo NeuroBaby (Tuscan & Olive + Claymorphism)
+# Design System: Checklist do Bebê Esperto (0-12m) (Tuscan & Olive + Claymorphism)
 
 ## 1. Core Philosophy
 - **Vibe:** Organic, Warm, Playful, "Baby-friendly" but Scientific.
