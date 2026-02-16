@@ -11,13 +11,17 @@ export const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || "";
 
 // Initialize Google Analytics
 export const pageview = (url: string) => {
-    if (typeof window.gtag !== "undefined") {
-        window.gtag("config", GA_TRACKING_ID, {
-            page_path: url,
-        });
-    }
-    if (typeof window.fbq !== "undefined") {
-        window.fbq("track", "PageView");
+    try {
+        if (typeof window.gtag !== "undefined" && GA_TRACKING_ID) {
+            window.gtag("config", GA_TRACKING_ID, {
+                page_path: url,
+            });
+        }
+        if (typeof window.fbq !== "undefined") {
+            window.fbq("track", "PageView");
+        }
+    } catch (err) {
+        console.error("Analytics Error (PageView):", err);
     }
 };
 
@@ -33,18 +37,26 @@ export const event = ({
     label: string;
     value?: number;
 }) => {
-    if (typeof window.gtag !== "undefined") {
-        window.gtag("event", action, {
-            event_category: category,
-            event_label: label,
-            value: value,
-        });
+    try {
+        if (typeof window.gtag !== "undefined") {
+            window.gtag("event", action, {
+                event_category: category,
+                event_label: label,
+                value: value,
+            });
+        }
+    } catch (err) {
+        console.error("Analytics Error (Event):", err);
     }
 };
 
 // Track Facebook Pixel events
 export const fbEvent = (name: string, options = {}) => {
-    if (typeof window.fbq !== "undefined") {
-        window.fbq("track", name, options);
+    try {
+        if (typeof window.fbq !== "undefined") {
+            window.fbq("track", name, options);
+        }
+    } catch (err) {
+        console.error("Analytics Error (FB Event):", err);
     }
 };

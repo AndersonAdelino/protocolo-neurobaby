@@ -152,12 +152,15 @@ export default function UpsellPage() {
                         </div>
 
                         <div className="space-y-8">
-                            <button className="w-full group relative overflow-hidden bg-primary text-white font-heading font-black text-2xl py-8 rounded-[1.5rem] shadow-[0_20px_40px_-15px_rgba(34,197,94,0.5)] transition-all hover:scale-[1.03] active:scale-[0.98]">
+                            <a
+                                href="https://pay.kiwify.com.br/fqZcJc9"
+                                className="w-full group relative overflow-hidden bg-primary text-white font-heading font-black text-2xl py-8 rounded-[1.5rem] shadow-[0_20px_40px_-15px_rgba(34,197,94,0.5)] transition-all hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center cursor-pointer"
+                            >
                                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
                                 <span className="relative flex items-center justify-center gap-4">
                                     SIM, GARANTIR O SONO <ArrowRight className="w-8 h-8" />
                                 </span>
-                            </button>
+                            </a>
 
                             <Link
                                 href="/"

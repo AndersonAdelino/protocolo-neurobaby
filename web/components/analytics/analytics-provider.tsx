@@ -1,20 +1,23 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { useEffect, Suspense } from "react";
 import Script from "next/script";
+import { pageview } from "@/lib/analytics";
 
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || "G-TW5S0LYZ69";
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || "1533716907719313";
 
 function Analytics() {
+    const pathname = usePathname();
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        // Logic to update page views on route change if needed
-        // GA4 automatically tracks history changes, but sometimes manual is better for SPA
-        // Facebook Pixel also tracks PageView on load.
-    }, [searchParams]);
+        if (pathname) {
+            const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
+            pageview(url);
+        }
+    }, [pathname, searchParams]);
 
     return (
         <>
@@ -30,9 +33,8 @@ function Analytics() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
+            // Config moved to useEffect to avoid duplication
+            // gtag('config', '${GA_TRACKING_ID}', { ... }); 
           `,
                 }}
             />
@@ -50,14 +52,13 @@ function Analytics() {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${FB_PIXEL_ID}');
-            fbq('track', 'PageView');
+            // fbq('track', 'PageView'); // Moved to useEffect
           `,
                 }}
             />
-            {/* UTMfy Pixel Script */}
             <Script
                 id="utmify-pixel"
-                strategy="lazyOnload"
+                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: `
             window.pixelId = "${process.env.NEXT_PUBLIC_UTMFY_PIXEL_ID || "699299e38cbcaf46f8029184"}";
@@ -66,13 +67,15 @@ function Analytics() {
             />
             <Script
                 src="https://cdn.utmify.com.br/scripts/pixel/pixel.js"
-                strategy="lazyOnload"
+                strategy="afterInteractive"
+                async
             />
 
             {/* UTMfy UTMS Script */}
             <Script
                 src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-                strategy="lazyOnload"
+                strategy="afterInteractive"
+                async
                 data-utmify-prevent-sub-ids
             />
         </>
