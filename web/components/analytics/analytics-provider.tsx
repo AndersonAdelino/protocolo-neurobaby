@@ -54,7 +54,24 @@ function Analytics() {
           `,
                 }}
             />
-            {/* UTMfy Script */}
+            {/* UTMfy Pixel Script */}
+            <Script
+                id="utmify-pixel"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
+            window.pixelId = "${process.env.NEXT_PUBLIC_UTMFY_PIXEL_ID || "699299e38cbcaf46f8029184"}";
+          `,
+                }}
+            />
+            <Script
+                src="https://cdn.utmify.com.br/scripts/pixel/pixel.js"
+                strategy="afterInteractive"
+                async
+                defer
+            />
+
+            {/* UTMfy UTMS Script */}
             <Script
                 src="https://cdn.utmify.com.br/scripts/utms/latest.js"
                 async
