@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Varela_Round, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import AnalyticsWrapper from "@/components/analytics/analytics-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 const varelaRound = Varela_Round({
   weight: "400",
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <AnalyticsWrapper />
         {children}
+        <Analytics />
       </body>
     </html>
   );
