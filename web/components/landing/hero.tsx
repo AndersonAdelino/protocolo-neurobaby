@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Check } from "lucide-react";
 import { FadeIn, ScaleIn } from "@/components/ui/motion-wrapper";
 
-export default function HeroSection() {
+export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
     return (
         <section className="relative pt-12 pb-16 lg:pt-32 lg:pb-32 bg-background overflow-hidden">
             {/* Soft decorative background element */}
@@ -29,19 +29,21 @@ export default function HeroSection() {
                         </FadeIn>
 
                         {/* Video moved here and centered - Portrait Mode */}
-                        <ScaleIn delay={0.2} className="relative w-[75%] sm:w-full max-w-[320px] aspect-[9/16] bg-black rounded-2xl lg:rounded-[2.5rem] shadow-clay border-4 lg:border-8 border-card overflow-hidden group cursor-pointer mx-auto">
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                    <Play className="w-8 h-8 lg:w-9 lg:h-9 text-white fill-current ml-1" />
+                        {showVSL && (
+                            <ScaleIn delay={0.2} className="relative w-[75%] sm:w-full max-w-[320px] aspect-[9/16] bg-black rounded-2xl lg:rounded-[2.5rem] shadow-clay border-4 lg:border-8 border-card overflow-hidden group cursor-pointer mx-auto">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                        <Play className="w-8 h-8 lg:w-9 lg:h-9 text-white fill-current ml-1" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="absolute bottom-6 left-0 right-0 text-white text-center px-6">
-                                <p className="text-lg lg:text-xl font-heading font-black leading-tight drop-shadow-lg">
-                                    Aperte o play e veja o checklist
-                                </p>
-                            </div>
-                        </ScaleIn>
+                                <div className="absolute bottom-6 left-0 right-0 text-white text-center px-6">
+                                    <p className="text-lg lg:text-xl font-heading font-black leading-tight drop-shadow-lg">
+                                        Aperte o play e veja o checklist
+                                    </p>
+                                </div>
+                            </ScaleIn>
+                        )}
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto px-4 sm:px-0">
                             <FadeIn delay={0.4} className="w-full sm:w-auto">
