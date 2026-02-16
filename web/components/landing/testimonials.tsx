@@ -27,7 +27,7 @@ export default function TestimonialsSection() {
                             </p>
                         </div>
                         <div className="flex items-center gap-4 pt-6 mt-auto">
-                            <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 overflow-hidden shrink-0">
+                            <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 overflow-hidden shrink-0 relative">
                                 <Image
                                     src="https://images.unsplash.com/photo-1559734840-f9509ee5677f?q=80&w=150&h=150&auto=format&fit=crop"
                                     alt="Mariana G."
@@ -54,7 +54,7 @@ export default function TestimonialsSection() {
                             </p>
                         </div>
                         <div className="flex items-center gap-4 pt-6 mt-auto">
-                            <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 overflow-hidden shrink-0">
+                            <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 overflow-hidden shrink-0 relative">
                                 <Image
                                     src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=150&h=150&auto=format&fit=crop"
                                     alt="Carlos e Bia"
@@ -81,7 +81,7 @@ export default function TestimonialsSection() {
                             </p>
                         </div>
                         <div className="flex items-center gap-4 pt-6 mt-auto">
-                            <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 overflow-hidden shrink-0">
+                            <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 overflow-hidden shrink-0 relative">
                                 <Image
                                     src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=150&h=150&auto=format&fit=crop"
                                     alt="Letícia R."
