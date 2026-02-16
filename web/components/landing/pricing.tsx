@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+import { fbEvent, event } from "@/lib/analytics";
+
 import { Check, X, AlertCircle, Star, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,11 +38,22 @@ export default function PricingSection() {
                         </div>
                         <div className="flex flex-col gap-4 pt-4">
                             <Button size="xl" className="h-16 rounded-2xl text-lg font-bold bg-primary hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20" asChild>
-                                <a href="#checkout-master" onClick={() => setShowUpsell(false)}>SIM, QUERO O PLANO COMPLETO</a>
+                                <a
+                                    href="#checkout-master"
+                                    onClick={() => {
+                                        setShowUpsell(false);
+                                        fbEvent('InitiateCheckout', { content_name: 'Plano Bebê Brilhante', value: 27.00, currency: 'BRL' });
+                                        event({ action: 'begin_checkout', category: 'ecommerce', label: 'Plano Bebê Brilhante', value: 27.00 });
+                                    }}
+                                >
+                                    SIM, QUERO O PLANO COMPLETO
+                                </a>
                             </Button>
                             <button
                                 onClick={() => {
                                     setShowUpsell(false);
+                                    fbEvent('InitiateCheckout', { content_name: 'Plano Básico', value: 10.00, currency: 'BRL' });
+                                    event({ action: 'begin_checkout', category: 'ecommerce', label: 'Plano Básico', value: 10.00 });
                                     window.location.href = "#checkout-basic";
                                 }}
                                 className="text-slate-400 hover:text-slate-600 font-bold text-sm uppercase tracking-widest transition-colors py-2"
@@ -105,7 +119,10 @@ export default function PricingSection() {
                                 <Button
                                     variant="outline"
                                     className="w-full h-14 rounded-xl border-slate-200 font-bold hover:bg-slate-50 hover:text-slate-900 transition-all cursor-pointer"
-                                    onClick={() => setShowUpsell(true)}
+                                    onClick={() => {
+                                        setShowUpsell(true);
+                                        event({ action: 'click_upsell_trigger', category: 'engagement', label: 'Plano Básico Card' });
+                                    }}
                                 >
                                     Quero o Plano Básico
                                 </Button>
@@ -147,8 +164,14 @@ export default function PricingSection() {
                                         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&h=100&auto=format&fit=crop",
                                         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&h=100&auto=format&fit=crop"
                                     ].map((url, i) => (
-                                        <div key={i} className="w-7 h-7 rounded-full border-2 border-white overflow-hidden bg-slate-200">
-                                            <img src={url} alt="Usuário Escolheu" className="w-full h-full object-cover" />
+                                        <div key={i} className="w-7 h-7 rounded-full border-2 border-white overflow-hidden bg-slate-200 relative">
+                                            <Image
+                                                src={url}
+                                                alt="Usuário Escolheu"
+                                                fill
+                                                className="object-cover"
+                                                sizes="28px"
+                                            />
                                         </div>
                                     ))}
                                 </div>
@@ -195,7 +218,13 @@ export default function PricingSection() {
                         </CardContent>
                         <CardFooter className="p-10 pt-0">
                             <Button size="xl" variant="default" className="w-full h-16 text-lg font-bold shadow-xl shadow-blue-500/20 bg-primary hover:bg-blue-700 text-white rounded-2xl transition-all" asChild>
-                                <a href="#checkout-master">
+                                <a
+                                    href="#checkout-master"
+                                    onClick={() => {
+                                        fbEvent('InitiateCheckout', { content_name: 'Plano Bebê Brilhante', value: 27.00, currency: 'BRL' });
+                                        event({ action: 'begin_checkout', category: 'ecommerce', label: 'Plano Bebê Brilhante Main', value: 27.00 });
+                                    }}
+                                >
                                     Quero o Plano Bebê Brilhante
                                 </a>
                             </Button>

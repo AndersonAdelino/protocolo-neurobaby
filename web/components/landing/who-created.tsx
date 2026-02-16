@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function WhoCreatedSection() {
     return (
         <section className="py-24 bg-slate-900 overflow-hidden relative" id="about">
@@ -10,10 +12,11 @@ export default function WhoCreatedSection() {
                     {/* Visual - Elegant Dark Frame */}
                     <div className="relative order-2 lg:order-1 flex justify-center">
                         <div className="relative w-full max-w-[450px] aspect-[4/5] bg-slate-800 rounded-[3rem] border border-white/5 shadow-2xl overflow-hidden">
-                            <img
+                            <Image
                                 src="/luciana-family.png"
                                 alt="Luciana Barbosa e sua Família"
-                                className="w-full h-full object-cover opacity-100 group-hover:scale-105 transition-transform duration-700"
+                                fill
+                                className="object-cover opacity-100 group-hover:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
 

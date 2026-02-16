@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Quote, Star, User } from "lucide-react";
 
 export default function TestimonialsSection() {
@@ -27,10 +28,11 @@ export default function TestimonialsSection() {
                         </div>
                         <div className="flex items-center gap-4 pt-6 mt-auto">
                             <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 overflow-hidden shrink-0">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1559734840-f9509ee5677f?q=80&w=150&h=150&auto=format&fit=crop"
                                     alt="Mariana G."
-                                    className="w-full h-full object-cover"
+                                    fill
+                                    className="object-cover"
                                 />
                             </div>
                             <div>
@@ -53,10 +55,11 @@ export default function TestimonialsSection() {
                         </div>
                         <div className="flex items-center gap-4 pt-6 mt-auto">
                             <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 overflow-hidden shrink-0">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=150&h=150&auto=format&fit=crop"
                                     alt="Carlos e Bia"
-                                    className="w-full h-full object-cover"
+                                    fill
+                                    className="object-cover"
                                 />
                             </div>
                             <div>
@@ -79,10 +82,11 @@ export default function TestimonialsSection() {
                         </div>
                         <div className="flex items-center gap-4 pt-6 mt-auto">
                             <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 overflow-hidden shrink-0">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=150&h=150&auto=format&fit=crop"
                                     alt="Letícia R."
-                                    className="w-full h-full object-cover"
+                                    fill
+                                    className="object-cover"
                                 />
                             </div>
                             <div>
