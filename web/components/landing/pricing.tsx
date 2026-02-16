@@ -37,18 +37,20 @@ export default function PricingSection() {
                             <p className="text-slate-600 font-medium">94% dos pais escolhem o <span className="text-primary font-bold">Plano Bebê Brilhante (0 a 3 anos)</span> para garantir que o bebê não pare de evoluir após os 12 meses. Por apenas <span className="text-slate-900 font-bold">R$ 17,00 a mais</span>, você destrava todo o futuro do seu filho.</p>
                         </div>
                         <div className="flex flex-col gap-4 pt-4">
-                            <Button size="xl" className="h-16 rounded-2xl text-lg font-bold bg-primary hover:bg-blue-700 text-white shadow-xl shadow-blue-500/20" asChild>
-                                <a
-                                    href="https://pay.kiwify.com.br/oSntC34"
-                                    onClick={() => {
-                                        setShowUpsell(false);
-                                        // fbEvent('InitiateCheckout', { content_name: 'Plano Bebê Brilhante', value: 27.00, currency: 'BRL' });
-                                        // event({ action: 'begin_checkout', category: 'ecommerce', label: 'Plano Bebê Brilhante', value: 27.00 });
-                                    }}
-                                >
-                                    SIM, QUERO O PLANO COMPLETO
-                                </a>
-                            </Button>
+                            <a
+                                href="https://pay.kiwify.com.br/oSntC34"
+                                className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-20 px-10 text-xl md:text-2xl rounded-3xl bg-primary text-primary-foreground hover:bg-primary/90 clay-button shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 font-extrabold tracking-wide border-b-4 border-black/10 active:border-b-0 active:translate-y-1 hover:bg-blue-700 text-white shadow-blue-500/20 cursor-pointer"
+                                onMouseDown={() => {
+                                    try {
+                                        fbEvent('InitiateCheckout', { content_name: 'Plano Bebê Brilhante', value: 27.00, currency: 'BRL' });
+                                        event({ action: 'begin_checkout', category: 'ecommerce', label: 'Plano Bebê Brilhante', value: 27.00 });
+                                    } catch (e) {
+                                        console.error("Analytics error", e);
+                                    }
+                                }}
+                            >
+                                SIM, QUERO O PLANO COMPLETO
+                            </a>
                             <button
                                 onClick={() => {
                                     setShowUpsell(false);
@@ -217,17 +219,20 @@ export default function PricingSection() {
                             </div>
                         </CardContent>
                         <CardFooter className="p-10 pt-0">
-                            <Button size="xl" variant="default" className="w-full h-16 text-lg font-bold shadow-xl shadow-blue-500/20 bg-primary hover:bg-blue-700 text-white rounded-2xl transition-all" asChild>
-                                <a
-                                    href="https://pay.kiwify.com.br/oSntC34"
-                                    onClick={() => {
-                                        // fbEvent('InitiateCheckout', { content_name: 'Plano Bebê Brilhante', value: 27.00, currency: 'BRL' });
-                                        // event({ action: 'begin_checkout', category: 'ecommerce', label: 'Plano Bebê Brilhante Main', value: 27.00 });
-                                    }}
-                                >
-                                    Quero o Plano Bebê Brilhante
-                                </a>
-                            </Button>
+                            <a
+                                href="https://pay.kiwify.com.br/oSntC34"
+                                className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-16 w-full text-lg font-bold shadow-xl shadow-blue-500/20 bg-primary hover:bg-blue-700 text-white rounded-2xl transition-all clay-button border-b-4 border-primary/20 active:border-b-0 active:translate-y-1 cursor-pointer"
+                                onMouseDown={() => {
+                                    try {
+                                        fbEvent('InitiateCheckout', { content_name: 'Plano Bebê Brilhante', value: 27.00, currency: 'BRL' });
+                                        event({ action: 'begin_checkout', category: 'ecommerce', label: 'Plano Bebê Brilhante Main', value: 27.00 });
+                                    } catch (e) {
+                                        console.error("Analytics error", e);
+                                    }
+                                }}
+                            >
+                                Quero o Plano Bebê Brilhante
+                            </a>
                         </CardFooter>
                     </Card>
                 </div>
