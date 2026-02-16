@@ -57,7 +57,7 @@ function Analytics() {
             {/* UTMfy Pixel Script */}
             <Script
                 id="utmify-pixel"
-                strategy="afterInteractive"
+                strategy="lazyOnload"
                 dangerouslySetInnerHTML={{
                     __html: `
             window.pixelId = "${process.env.NEXT_PUBLIC_UTMFY_PIXEL_ID || "699299e38cbcaf46f8029184"}";
@@ -66,16 +66,13 @@ function Analytics() {
             />
             <Script
                 src="https://cdn.utmify.com.br/scripts/pixel/pixel.js"
-                strategy="afterInteractive"
-                async
-                defer
+                strategy="lazyOnload"
             />
 
             {/* UTMfy UTMS Script */}
             <Script
                 src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-                async
-                defer
+                strategy="lazyOnload"
                 data-utmify-prevent-sub-ids
             />
         </>

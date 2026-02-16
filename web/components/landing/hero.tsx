@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Check } from "lucide-react";
-import { FadeIn, ScaleIn } from "@/components/ui/motion-wrapper";
 
 export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
     return (
@@ -13,7 +12,7 @@ export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
                 <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8 lg:space-y-12">
                     {/* Main Content */}
                     <div className="flex flex-col space-y-8 lg:space-y-10 items-center w-full">
-                        <FadeIn className="space-y-4 lg:space-y-6">
+                        <div className="space-y-4 lg:space-y-6">
                             <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-foreground leading-[1.1] text-balance">
                                 O Checklist do <span className="text-primary italic relative inline-block whitespace-nowrap">
                                     Bebê Esperto:
@@ -26,11 +25,11 @@ export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
                             <p className="mx-auto max-w-2xl text-muted-foreground text-base sm:text-lg md:text-xl font-sans font-medium leading-relaxed px-2 text-pretty">
                                 O guia prático de 15 minutos para pais que querem ver o bebê se desenvolvendo mais rápido através de estímulos simples e validados.
                             </p>
-                        </FadeIn>
+                        </div>
 
                         {/* Video moved here and centered - Portrait Mode */}
                         {showVSL && (
-                            <ScaleIn delay={0.2} className="relative w-[75%] sm:w-full max-w-[320px] aspect-[9/16] bg-black rounded-2xl lg:rounded-[2.5rem] shadow-clay border-4 lg:border-8 border-card overflow-hidden group cursor-pointer mx-auto">
+                            <div className="relative w-[75%] sm:w-full max-w-[320px] aspect-[9/16] bg-black rounded-2xl lg:rounded-[2.5rem] shadow-clay border-4 lg:border-8 border-card overflow-hidden group cursor-pointer mx-auto">
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -42,21 +41,21 @@ export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
                                         Aperte o play e veja o checklist
                                     </p>
                                 </div>
-                            </ScaleIn>
+                            </div>
                         )}
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto px-4 sm:px-0">
-                            <FadeIn delay={0.4} className="w-full sm:w-auto">
+                            <div className="w-full sm:w-auto">
                                 <Button size="xl" variant="cta" className="w-full sm:w-auto text-base lg:text-lg h-14 lg:h-16" asChild>
                                     <a href="#pricing">
                                         BAIXAR MEU CHECKLIST AGORA <ArrowRight className="ml-2 w-5 h-5 lg:w-6 lg:h-6" />
                                     </a>
                                 </Button>
-                            </FadeIn>
+                            </div>
                         </div>
 
                         {/* Trust Badges centered */}
-                        <FadeIn delay={0.6} className="flex flex-wrap justify-center gap-x-6 gap-y-4 lg:gap-x-12 lg:gap-y-6 pt-8 lg:pt-10 border-t border-border w-full px-2">
+                        <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 lg:gap-x-12 lg:gap-y-6 pt-8 lg:pt-10 border-t border-border w-full px-2">
                             {[
                                 "Baseado em Ciência",
                                 "0 a 12 Meses",
@@ -70,7 +69,7 @@ export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
                                     <span className="text-xs sm:text-sm font-bold text-muted-foreground uppercase tracking-tight text-center">{label}</span>
                                 </div>
                             ))}
-                        </FadeIn>
+                        </div>
                     </div>
                 </div>
             </div>

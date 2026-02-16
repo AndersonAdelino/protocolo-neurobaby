@@ -17,10 +17,7 @@ export default function TopBar() {
     }, []);
 
     return (
-        <motion.div
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        <div
             className="bg-red-600 text-white py-2 px-4 text-center text-[10px] md:text-xs font-bold shadow-md relative z-50 flex items-center justify-center overflow-hidden"
         >
             {/* Background urgency animation */}
@@ -42,7 +39,7 @@ export default function TopBar() {
                     >
                         <AlertCircle className="w-3 h-3 md:w-3.5 md:h-3.5 animate-pulse" />
                         <span className="font-black uppercase tracking-tight">
-                            Oferta de lançamento hoje, {dateText}:
+                            Oferta de lançamento hoje{dateText ? `, ${dateText}` : ""}:
                         </span>
                     </motion.div>
 
@@ -54,6 +51,6 @@ export default function TopBar() {
                     </span>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 }
