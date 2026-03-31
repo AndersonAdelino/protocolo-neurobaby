@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
     return (
-        <section className="relative pt-12 pb-16 lg:pt-32 lg:pb-32 bg-background overflow-hidden">
+        <section className="relative pt-12 pb-8 lg:pt-32 lg:pb-12 bg-background overflow-hidden">
             {/* Soft decorative background element */}
             <div className="absolute top-0 right-0 w-[300px] h-[300px] lg:w-[600px] lg:h-[600px] bg-secondary/20 rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/4 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[200px] h-[200px] lg:w-[400px] lg:h-[400px] bg-primary/20 rounded-full blur-3xl opacity-40 translate-y-1/3 -translate-x-1/4 pointer-events-none" />
@@ -29,18 +29,15 @@ export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
 
                         {/* Video moved here and centered - Portrait Mode */}
                         {showVSL && (
-                            <div className="relative w-[75%] sm:w-full max-w-[320px] aspect-[9/16] bg-black rounded-2xl lg:rounded-[2.5rem] shadow-clay border-4 lg:border-8 border-card overflow-hidden group cursor-pointer mx-auto">
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                        <Play className="w-8 h-8 lg:w-9 lg:h-9 text-white fill-current ml-1" />
-                                    </div>
-                                </div>
-                                <div className="absolute bottom-6 left-0 right-0 text-white text-center px-6">
-                                    <p className="text-lg lg:text-xl font-heading font-black leading-tight drop-shadow-lg">
-                                        Aperte o play e veja o checklist
-                                    </p>
-                                </div>
+                            <div className="relative w-full max-w-[320px] aspect-[9/16] bg-black rounded-2xl lg:rounded-[2.5rem] shadow-clay border-4 lg:border-8 border-card overflow-hidden mx-auto">
+                                <iframe
+                                    id="panda-70022e63-6b1b-4be8-af7b-b688ff288030"
+                                    src="https://player-vz-e8b8ffdd-f5d.tv.pandavideo.com.br/embed/?v=70022e63-6b1b-4be8-af7b-b688ff288030"
+                                    style={{ border: "none" }}
+                                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                                    allowFullScreen={true}
+                                    className="w-full h-full absolute inset-0"
+                                ></iframe>
                             </div>
                         )}
 
