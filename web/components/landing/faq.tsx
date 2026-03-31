@@ -51,12 +51,6 @@ export default function FAQSection() {
                         </AccordionItem>
                     ))}
                 </Accordion>
-
-                <div className="mt-16 text-center">
-                    <p className="text-sm text-slate-400 font-medium">
-                        Ainda tem alguma dúvida? Fale conosco via WhatsApp clicando <a href="#" className="text-primary font-bold underline underline-offset-4 hover:text-blue-700 transition-colors">aqui</a>.
-                    </p>
-                </div>
             </div>
         </section>
     );

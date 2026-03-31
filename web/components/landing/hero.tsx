@@ -14,16 +14,16 @@ export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
                     <div className="flex flex-col space-y-8 lg:space-y-10 items-center w-full">
                         <div className="space-y-4 lg:space-y-6">
                             <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-foreground leading-[1.1] text-balance">
-                                O Checklist do <span className="text-primary italic relative inline-block whitespace-nowrap">
-                                    Bebê Esperto:
+                                Ative o Potencial Máximo do Seu Bebê com Apenas <span className="text-primary italic relative inline-block whitespace-nowrap">
+                                    15 Minutos
                                     <svg className="absolute w-full h-2 lg:h-3 -bottom-1 left-0 text-primary/30 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
                                         <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
                                     </svg>
-                                </span> <br className="hidden md:block" /> Como incentivar a inteligência do seu filho dos 0 aos 12 meses.
+                                </span> <br className="hidden md:block" /> por Dia
                             </h1>
 
                             <p className="mx-auto max-w-2xl text-muted-foreground text-base sm:text-lg md:text-xl font-sans font-medium leading-relaxed px-2 text-pretty">
-                                O guia prático de 15 minutos para pais que querem ver o bebê se desenvolvendo mais rápido através de estímulos simples e validados.
+                                O primeiro ano de vida molda 85% do cérebro do seu filho. Descubra o checklist prático de neuroestimulação usado por famílias que não querem deixar o futuro ao acaso, sem precisar de brinquedos caros ou horas de dedicação.
                             </p>
                         </div>
 
@@ -45,7 +45,7 @@ export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
                             <div className="w-full sm:w-auto">
                                 <Button size="xl" variant="cta" className="w-full sm:w-auto text-base lg:text-lg h-14 lg:h-16" asChild>
                                     <a href="#pricing">
-                                        BAIXAR MEU CHECKLIST AGORA <ArrowRight className="ml-2 w-5 h-5 lg:w-6 lg:h-6" />
+                                        SIM! QUERO ATIVAR O POTENCIAL DO MEU BEBÊ <ArrowRight className="ml-2 w-5 h-5 lg:w-6 lg:h-6" />
                                     </a>
                                 </Button>
                             </div>

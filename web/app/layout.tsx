@@ -15,8 +15,8 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Checklist do Bebê Esperto (0-12m) | Ative a Inteligência do Seu Bebê (0-12 Meses)",
-  description: "Checklist diário prático de 15 minutos para acelerar o desenvolvimento motor e cognitivo do seu filho.",
+  title: "Protocolo NeuroBaby | Ative o Potencial Máximo do Seu Bebê com 15 Minutos/Dia",
+  description: "O primeiro ano de vida molda 85% do cérebro do seu filho. Descubra o checklist prático de neuroestimulação para ativar o potencial do seu bebê.",
 };
 
 export default function RootLayout({

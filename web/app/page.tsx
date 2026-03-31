@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background relative">
       <TopBar />
-      <HeroSection />
+      <HeroSection showVSL={false} />
       <SolutionSection />
       <AgitationSection />
       <BonusSection />
