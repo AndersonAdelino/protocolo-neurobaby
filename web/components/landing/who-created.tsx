@@ -41,7 +41,7 @@ export default function WhoCreatedSection() {
                             <h2 className="text-4xl font-extrabold tracking-tight md:text-6xl text-white leading-tight">
                                 Luciana Barbosa
                             </h2>
-                            <p className="text-slate-400 font-bold text-lg italic">Entusiasta em Desenvolvimento Cognitivo Infantil</p>
+                            <p className="text-slate-400 font-bold text-lg italic">Especialista em Estimulação Precoce e Neurodesenvolvimento Infantil</p>
                             <div className="h-1.5 w-24 bg-primary rounded-full"></div>
                         </div>
 

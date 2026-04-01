@@ -14,16 +14,16 @@ export default function HeroSection({ showVSL = true }: { showVSL?: boolean }) {
                     <div className="flex flex-col space-y-8 lg:space-y-10 items-center w-full">
                         <div className="space-y-4 lg:space-y-6">
                             <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight text-foreground leading-[1.1] text-balance">
-                                Ative o Potencial Máximo do Seu Bebê com Apenas <span className="text-primary italic relative inline-block whitespace-nowrap">
-                                    15 Minutos
+                                Pare de Adivinhar. <br className="hidden md:block" /> Saiba Exatamente <span className="text-primary italic relative inline-block whitespace-nowrap">
+                                    o Que Fazer
                                     <svg className="absolute w-full h-2 lg:h-3 -bottom-1 left-0 text-primary/30 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
                                         <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
                                     </svg>
-                                </span> <br className="hidden md:block" /> por Dia
+                                </span> com Seu Bebê a Cada Mês.
                             </h1>
 
                             <p className="mx-auto max-w-2xl text-muted-foreground text-base sm:text-lg md:text-xl font-sans font-medium leading-relaxed px-2 text-pretty">
-                                O primeiro ano de vida molda 85% do cérebro do seu filho. Descubra o checklist prático de neuroestimulação usado por famílias que não querem deixar o futuro ao acaso, sem precisar de brinquedos caros ou horas de dedicação.
+                                O primeiro ano molda 85% do cérebro do seu filho. Descubra o passo a passo diário que famílias usam para estimular o desenvolvimento sem brinquedos caros ou horas de dedicação.
                             </p>
                         </div>
 

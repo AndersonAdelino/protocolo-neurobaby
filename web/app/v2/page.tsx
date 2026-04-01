@@ -16,12 +16,12 @@ export default function HomeV2() {
     <main className="min-h-screen bg-background relative">
       <TopBar />
       <HeroSection showVSL={true} />
-      <SolutionSection />
       <AgitationSection />
-      <BonusSection />
-      <PricingSection />
+      <SolutionSection />
       <TestimonialsSection />
       <WhoCreatedSection />
+      <BonusSection />
+      <PricingSection />
       <FAQSection />
       <GuaranteeSection />
       <Footer />
